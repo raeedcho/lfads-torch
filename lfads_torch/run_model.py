@@ -70,7 +70,6 @@ def run_model(
             config.trainer,
             callbacks=[instantiate(c) for c in config.callbacks.values()],
             logger=[instantiate(lg) for lg in config.logger.values()],
-            gpus=int(torch.cuda.is_available()),
         )
         # Temporary workaround for PTL step-resuming bug
         if checkpoint_dir:
