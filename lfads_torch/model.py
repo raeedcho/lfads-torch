@@ -428,7 +428,7 @@ class LFADS(pl.LightningModule):
         # Log per-session metrics
         for s, recon_value, batch_size in zip(sessions, sess_recon, batch_sizes):
             self.log(
-                name=f"{split}/recon/sess{s}",
+                name=f"{split}/recon_sess{s}",
                 value=recon_value,
                 on_step=False,
                 on_epoch=True,
@@ -443,11 +443,11 @@ class LFADS(pl.LightningModule):
             f"{split}/fp_bps": max(fp_bps, -1.0),
             f"{split}/r2": r2,
             f"{split}/wt_l2": l2,
-            f"{split}/wt_l2/ramp": l2_ramp,
+            f"{split}/wt_l2_ramp": l2_ramp,
             f"{split}/wt_kl": ic_kl + co_kl,
-            f"{split}/wt_kl/ic": ic_kl,
-            f"{split}/wt_kl/co": co_kl,
-            f"{split}/wt_kl/ramp": kl_ramp,
+            f"{split}/wt_kl_ic": ic_kl,
+            f"{split}/wt_kl_co": co_kl,
+            f"{split}/wt_kl_ramp": kl_ramp,
         }
         if split == "valid":
             # Update the smoothed reconstruction loss
