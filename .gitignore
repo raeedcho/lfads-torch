@@ -2,6 +2,7 @@ test_*.yaml
 tutorials/multisession/AnimalP
 datasets
 tutorials/multisession/lfads-output
+runs/
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
