@@ -6,17 +6,17 @@ from pathlib import Path
 from lfads_torch.run_model import run_model
 
 # ---------- OPTIONS -----------
-PROJECT_STR = "lfads-torch-example"
-DATASET_STR = "nlb_mc_maze"
-RUN_TAG = datetime.now().strftime("%y%m%d") + "_exampleSingle"
-RUN_DIR = Path("runs") / PROJECT_STR / DATASET_STR / RUN_TAG
-OVERWRITE = True
+PROJECT_STR = "for_brian"
+DATASET_STR = "brian_marmoset_data"
+#RUN_TAG = datetime.now().strftime("%y%m%d") + "_exampleSingle"
+RUN_DIR = Path("runs") / PROJECT_STR / DATASET_STR # / RUN_TAG
+OVERWRITE = False
 # ------------------------------
 
 # Overwrite the directory if necessary
 if RUN_DIR.exists() and OVERWRITE:
     shutil.rmtree(RUN_DIR)
-RUN_DIR.mkdir(parents=True)
+RUN_DIR.mkdir(parents=True,exist_ok=True)
 # Copy this script into the run directory
 shutil.copyfile(__file__, RUN_DIR / Path(__file__).name)
 # Switch to the `RUN_DIR` and train the model
@@ -27,4 +27,5 @@ run_model(
         "model": DATASET_STR,
     },
     config_path="../configs/single.yaml",
+    checkpoint_dir="./lightning_checkpoints",
 )
